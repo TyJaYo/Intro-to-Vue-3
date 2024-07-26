@@ -22,9 +22,11 @@ const app = Vue.createApp({
   computed: {
     cutPie() {
       let cumulativePercentage = 0
+      let previousPercentage = 0
       const colorStops = this.composition.map(({ percentage, hex }) => {
+        previousPercentage = cumulativePercentage
         cumulativePercentage += percentage
-        return `${hex} ${cumulativePercentage}%`
+        return `${hex} ${previousPercentage}% ${cumulativePercentage}%`
       })
       this.pieStyle = `background-image: conic-gradient(${colorStops.join(', ')}, white 0);`
       return this.pieStyle
