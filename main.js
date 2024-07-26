@@ -1,24 +1,60 @@
 const app = Vue.createApp({
-    data() {
-        return {
-            cart:0,
-            product: 'Socks',
-            brand: 'Vue Mastery',
-            image: './assets/images/socks_blue.jpg',
-            inStock: false,
-            details: ['50% cotton', '30% wool', '20% polyester'],
-            variants: [
-              { id: 2234, color: 'green', image: './assets/images/socks_green.jpg' },
-              { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg' },
-            ]
-        }
-    },
-    methods: {
-        addToCart() {
-            this.cart += 1
-        },
-        updateImage(variantImage) {
-            this.image = variantImage
-        }
+  data() {
+    return {
+      cart: 0,
+      inventory: 5,
+      product: 'Socks',
+      brand: 'Vue Mastery',
+      image: './assets/images/socks_blue.jpg',
+      inStock: true,
+      composition: [
+        { percentage: 50, material: 'cotton', hex: '#8A8E94' },
+        { percentage: 30, material: 'wool', hex: '#A18A7C' },
+        { percentage: 20, material: 'polyester', hex: '#686B7A' }
+      ],
+      variants: [
+        { id: 2234, color: 'green' },
+        { id: 2235, color: 'blue' }
+      ],
+      pieStyle: ''
+    };
+  },
+  computed: {
+    cutPie() {
+      let cumulativePercentage = 0
+      const colorStops = this.composition.map(({ percentage, hex }) => {
+        cumulativePercentage += percentage
+        return `${hex} ${cumulativePercentage}%`
+      })
+      this.pieStyle = `background-image: conic-gradient(${colorStops.join(', ')}, white 0);`
+      return this.pieStyle
     }
+  },
+  methods: {
+    // cutPie() {
+    //   for (material in this.composition) {
+    //     const percentage = material[0]
+    //   }
+    // },
+    checkStock() {
+      if (this.inventory > 0) {
+        this.inStock = true
+      } else {
+        this.inStock = false
+      }
+    },
+    addToCart() {
+      this.cart += 1
+      this.inventory -= 1
+      this.checkStock()
+    },
+    removeFromCart() {
+      this.cart -= 1
+      this.inventory += 1
+      this.checkStock()
+    },
+    updateImage(variantColor) {
+      this.image = "./assets/images/socks_" + variantColor + ".jpg"
+    }
+  }
 })
