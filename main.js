@@ -17,7 +17,7 @@ const app = Vue.createApp({
         { id: 2235, color: 'blue', hex: '#52667f' }
       ],
       pieStyle: ''
-    };
+    }
   },
   computed: {
     cutPie() {
