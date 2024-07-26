@@ -13,8 +13,8 @@ const app = Vue.createApp({
         { percentage: 20, material: 'polyester', hex: '#686B7A' }
       ],
       variants: [
-        { id: 2234, color: 'green' },
-        { id: 2235, color: 'blue' }
+        { id: 2234, color: 'green', hex: '#309d66' },
+        { id: 2235, color: 'blue', hex: '#52667f' }
       ],
       pieStyle: ''
     };
