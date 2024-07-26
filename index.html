@@ -36,7 +36,7 @@
               :key="variant.id"
               @mouseover="updateImage(variant.color)"
               class="color-circle"
-              :style="{ backgroundColor: variant.hex }">
+              :style="{ backgroundImage: `url(${getImageUrl(variant.color)})` }">
             </div>
           </div>
 
