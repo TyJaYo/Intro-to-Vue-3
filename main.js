@@ -33,11 +33,6 @@ const app = Vue.createApp({
     }
   },
   methods: {
-    // cutPie() {
-    //   for (material in this.composition) {
-    //     const percentage = material[0]
-    //   }
-    // },
     checkStock() {
       if (this.inventory > 0) {
         this.inStock = true
