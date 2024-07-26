@@ -21,7 +21,7 @@
           </div>
           <div class="product-info">
             <h1>{{ product }}</h1>
-            <p><span v-if="inStock">In</span><span v-else>Out of</span> Stock – <span>{{ inventory }}</span> pairs remaining</p>
+            <p><span v-if="inStock">In</span><span v-else>Out of</span> Stock – <span>{{ inventory }}</span> pair<span v-if="inventory != 1">s</span> remaining</p>
             <div class="clearfix">
               <div class="color-circle" :style="cutPie">
               </div>
